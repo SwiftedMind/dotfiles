@@ -108,7 +108,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # bun completions
-[ -s "/Users/swiftedmind/.bun/_bun" ] && source "/Users/swiftedmind/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -140,11 +140,11 @@ eval "$(zoxide init zsh)"
 alias cd="z"
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/swiftedmind/.lmstudio/bin"
+export PATH="$PATH:$HOME/.lmstudio/bin"
 
 # Created by `pipx` on 2025-04-03 05:47:36
-export PATH="$PATH:/Users/swiftedmind/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
-alias claude="/Users/swiftedmind/.claude/local/claude"
+alias claude="$HOME/.claude/local/claude"
 
 # alias ai-cli='zellij --session "$(basename "$PWD")" --new-session-with-layout "ai-coding"'
