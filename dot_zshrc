@@ -147,4 +147,3 @@ export PATH="$PATH:$HOME/.local/bin"
 
 alias claude="$HOME/.claude/local/claude"
 
-# alias ai-cli='zellij --session "$(basename "$PWD")" --new-session-with-layout "ai-coding"'
