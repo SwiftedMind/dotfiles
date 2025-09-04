@@ -17,6 +17,6 @@ command = "npx"
 args = ["-y", "mcp-remote", "https://sosumi.ai/mcp"]
 
 [mcp_servers.spm-scout]
-command = "/Users/Shared/Code/SwiftPackageScout/.build/arm64-apple-macosx/debug/spm-scout-mcp"
+command = "/Users/Shared/Code/SwiftPackageScout/.build/arm64-apple-macosx/release/spm-scout"
 args = []
 
