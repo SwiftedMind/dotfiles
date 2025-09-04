@@ -1,7 +1,6 @@
 # General Coding Guidelines
 
 - Write clean, readable and well-structured code.
-- You must use 2 spaces as tab width for indentation.
 
 ## Naming Conventions
 
