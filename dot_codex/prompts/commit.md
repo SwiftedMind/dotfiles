@@ -1,23 +1,12 @@
-# Claude Command: Commit
+# Commit
 
-This command helps you create well-formatted commits with conventional commit messages.
-
-## Usage
-
-To create a commit, just type:
-
-```
-/commit
-```
-
-## What This Command Does
-
-2. Checks which files are staged with `git status`
-3. If 0 files are staged, automatically adds all modified and new files with `git add`
-4. Performs a `git diff` to understand what changes are being committed
-5. Analyzes the diff to determine if multiple distinct logical changes are present
-6. If multiple distinct changes are detected, suggests breaking the commit into multiple smaller commits
-7. For each commit (or the single commit if not split), creates a commit message using conventional commit format
+1. Check which files are staged with git status
+2. Add all modified and new files with git add if 0 files are staged
+3. Run git diff to see what changes are being committed
+4. Analyze the diff to determine if multiple distinct logical changes are present
+5. Suggest breaking the commit into smaller commits if multiple distinct changes are detected
+6. Create a commit message in conventional commit format for each commit (or the single commit if not split)
+7. Perform the commits
 
 ## Best Practices for Commits
 
@@ -92,9 +81,7 @@ Example of splitting commits:
 
 ## Important Notes
 
-- If specific files are already staged, the command will only commit those files
-- If no files are staged, it will automatically stage all modified and new files
 - The commit message will be constructed based on the changes detected
-- Before committing, the command will review the diff to identify if multiple commits would be more appropriate
-- If suggesting multiple commits, it will help you stage and commit the changes separately
-- Always reviews the commit diff to ensure the message matches the changes
+- Before committing, review the diff to identify if multiple commits would be more appropriate
+- If suggesting multiple commits, stage and commit the changes separately
+- Always review the commit diff to ensure the message matches the changes
