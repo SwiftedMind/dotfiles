@@ -145,5 +145,8 @@ export PATH="$PATH:$HOME/.lmstudio/bin"
 # Created by `pipx` on 2025-04-03 05:47:36
 export PATH="$PATH:$HOME/.local/bin"
 
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export LLVM_SYMBOLIZER_PATH="/opt/homebrew/opt/llvm/bin/llvm-symbolizer"
+
 alias claude="$HOME/.claude/local/claude"
 
