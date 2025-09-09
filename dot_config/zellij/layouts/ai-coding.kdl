@@ -13,16 +13,14 @@ layout {
                 pane command="lazygit" size="40%"
               }
             }
-            pane size="40%" split_direction="horizontal" {
-              pane command="nvim" size="60%" {
-                args "."
-              }
 
-              pane size="40%" stacked=true {
-                pane size="100%" expanded=true
+              pane stacked=true {
+                pane name="files" command="nvim" expanded=true {
+                  args "."
+                }
+                pane
                 pane
               }
-            }
         }
         pane size=1 borderless=true {
             plugin location="zellij:status-bar"
