@@ -1,0 +1,9 @@
+git:
+  tabWidth: 2
+  paging:
+    colorArg: always
+    pager: "delta --navigate --syntax-theme=ansi --dark --line-numbers --paging=never --tabs=2"
+os:
+  edit: "nvim {{filename}}"
+  open: "open {{filename}}"
+notARepository: skip

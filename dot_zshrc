@@ -150,3 +150,5 @@ export LLVM_SYMBOLIZER_PATH="/opt/homebrew/opt/llvm/bin/llvm-symbolizer"
 
 alias claude="~/.claude/local/claude"
 
+# Puts lzaygit config in ~/.config/lazygit/config.yml
+export XDG_CONFIG_HOME="$HOME/.config"
