@@ -1,0 +1,191 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "bindings": {
+      "cmd-b": ["task::Spawn", { "task_name": "SwiftBuild" }]
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      // "j k": "vim::NormalBefore"
+    }
+  },
+  {
+    "context": "((vim_mode == normal || vim_mode == visual) || vim_mode == operator)",
+    "bindings": {
+      "alt-j": "editor::MoveLineDown"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "alt-k": "editor::MoveLineUp"
+    }
+  },
+  {
+    "context": "(Editor && (showing_code_actions || showing_completions))",
+    "bindings": {
+      "cmd-j": "editor::ContextMenuNext"
+    }
+  },
+  {
+    "context": "(Editor && (showing_code_actions || showing_completions))",
+    "bindings": {
+      "cmd-k": "editor::ContextMenuPrevious"
+    }
+  },
+  {
+    "bindings": {
+      "cmd-o": "file_finder::Toggle"
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-shift-c": "editor::ToggleComments"
+    }
+  },
+  {
+    "bindings": {
+      "cmd-0": "workspace::ToggleLeftDock"
+    }
+  },
+  {
+    "bindings": {
+      "cmd-=": [
+        "zed::ResetBufferFontSize",
+        {
+          "persist": false
+        }
+      ]
+    }
+  },
+  {
+    "bindings": {
+      "cmd-p": "command_palette::Toggle"
+    }
+  },
+  {
+    "bindings": {
+      "alt-cmd-0": "workspace::ToggleRightDock"
+    }
+  },
+  {
+    "bindings": {
+      "cmd-shift-y": "terminal_panel::Toggle"
+    }
+  },
+  {
+    "context": "!ContextEditor > (Editor && mode == full)",
+    "bindings": {
+      "cmd-shift-j": "pane::RevealInProjectPanel"
+    }
+  },
+  {
+    "bindings": {
+      "cmd-d": "editor::DuplicateSelection"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-e": "editor::Rename"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-tab": "pane::ActivateNextItem"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-shift-tab": "pane::ActivatePreviousItem"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-o": "pane::GoBack"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-i": "pane::GoForward"
+    }
+  },
+  {
+    "context": "(FileFinder || FileFinder > Picker > Editor)",
+    "bindings": {
+      "alt-enter": "file_finder::ToggleSplitMenu"
+    }
+  },
+  {
+    "context": "((FileFinder || FileFinder > Picker > Editor) || FileFinder > Picker > menu)",
+    "bindings": {
+      "right": "pane::SplitRight"
+    }
+  },
+  {
+    "context": "((FileFinder || FileFinder > Picker > Editor) || FileFinder > Picker > menu)",
+    "bindings": {
+      "down": "pane::SplitDown"
+    }
+  },
+  {
+    "context": "((FileFinder || FileFinder > Picker > Editor) || FileFinder > Picker > menu)",
+    "bindings": {
+      "up": "pane::SplitUp"
+    }
+  },
+  {
+    "context": "((FileFinder || FileFinder > Picker > Editor) || FileFinder > Picker > menu)",
+    "bindings": {
+      "left": "pane::SplitLeft"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-alt-cmd-right": "pane::SplitRight"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-alt-cmd-left": "pane::SplitLeft"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-alt-cmd-down": "pane::SplitDown"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-alt-cmd-up": "pane::SplitUp"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "cmd-shift-k": "terminal::Clear"
+    }
+  }
+]
