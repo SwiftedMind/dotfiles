@@ -187,5 +187,11 @@
     "bindings": {
       "cmd-shift-k": "terminal::Clear"
     }
+  },
+  {
+    "context": "(ProjectPanel && not_editing)",
+    "bindings": {
+      "cmd-e": "project_panel::Rename"
+    }
   }
 ]
