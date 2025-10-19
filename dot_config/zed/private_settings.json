@@ -94,11 +94,7 @@
     "show": "never"
   },
   "inlay_hints": {
-    "show_other_hints": true,
-    "show_type_hints": true,
-    "show_background": false,
-    "show_value_hints": true,
-    "enabled": true
+    "enabled": false
   },
   "wrap_guides": [120],
   "vim_mode": true,
