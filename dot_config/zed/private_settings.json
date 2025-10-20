@@ -76,10 +76,10 @@
   },
   "soft_wrap": "editor_width",
   "show_whitespaces": "all",
-  "agent_buffer_font_size": 16.0,
+  "agent_buffer_font_size": 17.0,
   "ui_font_family": ".ZedSans",
   "buffer_font_family": "JetBrainsMono Nerd Font Mono",
-  "theme": "Xcode Default Dark",
+  "theme": "Xcode Default Darker",
   "telemetry": {
     "diagnostics": false,
     "metrics": false
