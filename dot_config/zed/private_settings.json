@@ -7,6 +7,16 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "tabs": {
+    "git_status": true,
+    "close_position": "right",
+    "show_close_button": "hover",
+    "file_icons": true,
+    "show_diagnostics": "errors"
+  },
+  "file_finder": {
+    "modal_max_width": "small"
+  },
   "extend_comment_on_newline": true,
   "icon_theme": "VSCode Great Icons Theme",
   "agent": {
@@ -36,6 +46,7 @@
     "folder_icons": true
   },
   "project_panel": {
+    "default_width": 300,
     "indent_size": 12.0
   },
   "preview_tabs": {
@@ -91,7 +102,11 @@
     }
   },
   "auto_signature_help": true,
-  "show_edit_predictions": false, // AI tab complete
+  "edit_predictions": {
+    "mode": "subtle",
+    "enabled_in_text_threads": true
+  },
+  "show_edit_predictions": true,
   "minimap": {
     "show": "never"
   },
