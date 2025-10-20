@@ -1,0 +1,26 @@
+{
+  // Each snippet must have a name and body, but the prefix and description are optional.
+  // The prefix is used to trigger the snippet, but when omitted then the name is used.
+  // Use placeholders like $1, $2 or ${1:defaultValue} to define tab stops.
+  // The $0 determines the final cursor position.
+  // Placeholders with the same value are linked.
+  "Add a @State property": {
+    "prefix": "stateVar",
+    "body": ["@State private var ${1:name}: ${2:type} = ${3:value}", "$0"],
+    "description": "Adds a @State property"
+  },
+  "Add a @ViewBuilder property": {
+    "prefix": "buildVar",
+    "body": ["@ViewBuilder private var ${1:name}: some View {", "  $0", "}"],
+    "description": "Adds a @ViewBuilder property"
+  },
+  "Add a @ViewBuilder method": {
+    "prefix": "buildFunc",
+    "body": [
+      "@ViewBuilder private func ${1:name}($2) -> some View {",
+      "  $0",
+      "}"
+    ],
+    "description": "Adds a @ViewBuilder method"
+  }
+}
