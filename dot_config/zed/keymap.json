@@ -12,6 +12,16 @@
     }
   },
   {
+    "bindings": {
+      "cmd-r": [
+        "task::Spawn",
+        {
+          "task_name": "SwiftRun"
+        }
+      ]
+    }
+  },
+  {
     "context": "Workspace",
     "bindings": {
       // "shift shift": "file_finder::Toggle"
