@@ -203,5 +203,28 @@
     "bindings": {
       "cmd-e": "project_panel::Rename"
     }
+  },
+  {
+    "bindings": {
+      "cmd-shift-c": "editor::CopyFileName"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-1": "project_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-2": "git_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-3": "outline_panel::ToggleFocus"
+    }
   }
 ]
