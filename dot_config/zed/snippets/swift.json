@@ -11,13 +11,14 @@
   },
   "Add a @ViewBuilder property": {
     "prefix": "buildVar",
-    "body": ["@ViewBuilder private var ${1:name}: some View {", "  $0", "}"],
+    "body": ["@ViewBuilder", "private var ${1:name}: some View {", "  $0", "}"],
     "description": "Adds a @ViewBuilder property"
   },
   "Add a @ViewBuilder method": {
     "prefix": "buildFunc",
     "body": [
-      "@ViewBuilder private func ${1:name}($2) -> some View {",
+      "@ViewBuilder",
+      "private func ${1:name}($2) -> some View {",
       "  $0",
       "}"
     ],
