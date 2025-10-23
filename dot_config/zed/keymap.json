@@ -7,6 +7,13 @@
 // from the command palette.
 [
   {
+    "context": "Editor && multibuffer",
+    "bindings": {
+      "g ]": "editor::MoveToStartOfNextExcerpt",
+      "g [": "editor::MoveToStartOfExcerpt"
+    }
+  },
+  {
     "bindings": {
       "cmd-b": ["task::Spawn", { "task_name": "SwiftBuild" }]
     }
