@@ -20,12 +20,7 @@
   },
   {
     "bindings": {
-      "cmd-r": [
-        "task::Spawn",
-        {
-          "task_name": "SwiftRun"
-        }
-      ]
+      "cmd-r": "debugger::Start"
     }
   },
   {
@@ -97,11 +92,6 @@
   {
     "bindings": {
       "alt-cmd-0": "workspace::ToggleRightDock"
-    }
-  },
-  {
-    "bindings": {
-      "cmd-shift-y": "terminal_panel::Toggle"
     }
   },
   {
@@ -232,6 +222,33 @@
     "context": "Workspace",
     "bindings": {
       "cmd-3": "outline_panel::ToggleFocus"
+    }
+  },
+  {
+    "bindings": {
+      "cmd-.": ["workspace::SendKeystrokes", "shift-f5 escape g ."]
+    }
+  },
+  {
+    "bindings": {
+      "cmd-d cmd-s": "debugger::Stop"
+    }
+  },
+  {
+    "context": "Workspace || Editor",
+    "bindings": {
+      "shift-cmd-i": "agent::NewThread"
+    }
+  },
+  {
+    "context": "Workspace || Editor",
+    "bindings": {
+      "cmd-i": [
+        "agent::NewExternalAgentThread",
+        {
+          "agent": "codex"
+        }
+      ]
     }
   }
 ]
