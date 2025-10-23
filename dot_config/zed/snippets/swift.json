@@ -23,5 +23,10 @@
       "}"
     ],
     "description": "Adds a @ViewBuilder method"
+  },
+  "Add a @EnvironmentValue property": {
+    "prefix": "envVar",
+    "body": ["@Environment(\\.${1:value}) private var ${2:name}", "$0"],
+    "description": "Adds a @ViewBuilder property"
   }
 }
