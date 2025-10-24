@@ -7,6 +7,7 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "confirm_quit": true,
   "tabs": {
     "git_status": true,
     "close_position": "right",
@@ -53,6 +54,10 @@
     "enabled": true
   },
   "agent_ui_font_size": 17.0,
+  "format_on_save": "on",
+  "tab_size": 2,
+  "hard_tabs": false,
+  "show_completions_on_input": true,
   "languages": {
     "Markdown": {
       "show_completions_on_input": false,

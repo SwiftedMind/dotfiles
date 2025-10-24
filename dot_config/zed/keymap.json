@@ -250,5 +250,17 @@
         }
       ]
     }
+  },
+  {
+    "context": "AgentPanel",
+    "bindings": {
+      "cmd-l": "agent::QuoteSelection"
+    }
+  },
+  {
+    "context": "(Editor && mode == full)",
+    "bindings": {
+      "cmd-l": "agent::QuoteSelection"
+    }
   }
 ]
