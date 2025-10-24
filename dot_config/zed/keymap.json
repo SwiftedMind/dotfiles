@@ -15,7 +15,7 @@
   },
   {
     "bindings": {
-      "cmd-b": ["task::Spawn", { "task_name": "SwiftBuild" }]
+      "cmd-b": ["task::Spawn", { "task_name": "Swift: Build" }]
     }
   },
   {
