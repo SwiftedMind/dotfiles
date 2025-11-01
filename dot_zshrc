@@ -94,3 +94,10 @@ alias claude="~/.claude/local/claude"
 # Put lazygit config in ~/.config/lazygit/config.yml
 export XDG_CONFIG_HOME="$HOME/.config"
 
+# Load local secrets (not tracked by chezmoi)
+# This includes OPENAI_API_KEY
+if [[ -f ~/.secrets ]]; then
+  source ~/.secrets
+  alias codex-api='printenv OPENAI_API_KEY | codex login --with-api-key'
+  alias codex-sub='codex login'
+fi

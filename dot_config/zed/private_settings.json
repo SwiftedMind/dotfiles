@@ -21,6 +21,7 @@
   "extend_comment_on_newline": true,
   "icon_theme": "VSCode Great Icons Theme",
   "agent": {
+    "default_profile": "ask",
     "always_allow_tool_actions": true,
     "default_model": {
       "provider": "zed.dev",
@@ -94,8 +95,9 @@
   "show_whitespaces": "all",
   "agent_buffer_font_size": 17.0,
   "ui_font_family": ".ZedSans",
-  "buffer_font_family": "JetBrainsMono Nerd Font Mono",
-  "theme": "Xcode Default Darker",
+  "buffer_font_family": ".ZedMono", // I kind of like this better I think
+  // "buffer_font_family": "JetBrainsMono Nerd Font Mono",
+  "theme": "Xcode High Contrast Darker",
   "telemetry": {
     "diagnostics": false,
     "metrics": false
