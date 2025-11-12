@@ -3,6 +3,10 @@
 // Example:
 [
   {
+    "label": "start lazygit",
+    "command": "lazygit -p $ZED_WORKTREE_ROOT"
+  },
+  {
     "label": "Swift: Build",
     "command": "xcede build",
     "allow_concurrent_runs": false,
