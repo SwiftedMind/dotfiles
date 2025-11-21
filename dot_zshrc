@@ -101,3 +101,10 @@ if [[ -f ~/.secrets ]]; then
   alias codex-api='printenv OPENAI_API_KEY | codex login --with-api-key'
   alias codex-sub='codex login'
 fi
+
+# Only run Homebrew shellenv in interactive shells,
+# and only if brew actually exists.
+# Fixes permission issues in Codex
+if [[ $- == *i* ]] && [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
