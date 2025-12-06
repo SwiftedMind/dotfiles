@@ -1,0 +1,4 @@
+prefix_rule(pattern=["git", "rm", "--cached", "Noema.xcodeproj/xcshareddata/xcschemes/NoemaTests.xcscheme"], decision="allow")
+prefix_rule(pattern=["xcodebuild", "-quiet", "-project", "Noema.xcodeproj", "-scheme", "Noema Debug", "-destination", "platform=iOS Simulator,name=iPhone 17 Pro,OS=latest", "build"], decision="allow")
+prefix_rule(pattern=["xcodebuild"], decision="allow")
+prefix_rule(pattern=["swift"], decision="allow")
