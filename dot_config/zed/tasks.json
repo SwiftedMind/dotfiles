@@ -3,6 +3,20 @@
 // Example:
 [
   {
+    "label": "Open current file in Xcode",
+    "command": "xcode-open-file",
+    "args": ["$ZED_FILE"],
+    "hide": "always",
+    "reveal": "never"
+  },
+  {
+    "label": "file_finder",
+    "command": "zed \"$(tv files)\"",
+    "hide": "always",
+    "allow_concurrent_runs": true,
+    "use_new_terminal": true
+  },
+  {
     "label": "start lazygit",
     "command": "lazygit -p $ZED_WORKTREE_ROOT"
   },
