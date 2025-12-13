@@ -1,3 +1,0 @@
-prefix_rule(pattern=["xcodebuild"], decision="allow")
-prefix_rule(pattern=["swift"], decision="allow")
-prefix_rule(pattern=["git"], decision="allow")
