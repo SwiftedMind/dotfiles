@@ -1,6 +1,0 @@
-#!/bin/sh
-osascript <<END
-tell application "Xcode"
-	open POSIX file "$1"
-end tell
-END

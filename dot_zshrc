@@ -102,9 +102,4 @@ if [[ -f ~/.secrets ]]; then
   alias codex-sub='codex login'
 fi
 
-# Only run Homebrew shellenv in interactive shells,
-# and only if brew actually exists.
-# Fixes permission issues in Codex
-if [[ $- == *i* ]] && [[ -x /opt/homebrew/bin/brew ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
+alias python=python3
