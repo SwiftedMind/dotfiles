@@ -7,6 +7,30 @@
 // from the command palette.
 [
   {
+    "context": "Editor && vim_mode == normal && !menu",
+    "bindings": {
+      "g h": "editor::ToggleSelectedDiffHunks"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert && !menu",
+    "bindings": {
+      "j k": "vim::NormalBefore"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert && !menu",
+    "bindings": {
+      "j j": "vim::NormalBefore"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && !menu",
+    "bindings": {
+      "^": "workspace::ActivateNextPane"
+    }
+  },
+  {
     "context": "Workspace",
     "bindings": {
       "alt-g": [

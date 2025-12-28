@@ -1,11 +1,3 @@
-// Zed settings
-//
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
-//
-// To see all of Zed's default settings without changing your
-// custom settings, run the `open default settings` command
-// from the command palette or from `Zed` application menu.
 {
   "confirm_quit": true,
   "tabs": {
@@ -21,6 +13,10 @@
   "extend_comment_on_newline": true,
   "icon_theme": "VSCode Great Icons Theme",
   "agent": {
+    "inline_assistant_model": {
+      "provider": "openai",
+      "model": "gpt-5.1"
+    },
     "default_profile": "ask",
     "always_allow_tool_actions": true,
     "default_model": {
@@ -31,13 +27,11 @@
   },
   "context_servers": {
     "sosumi": {
-      "source": "custom",
       "enabled": true,
       "command": "npx",
       "args": ["-y", "mcp-remote", "https://sosumi.ai/mcp"]
     },
     "hatch-mcp": {
-      "source": "custom",
       "enabled": true,
       "command": "npx",
       "args": ["-y", "@swiftedmind/hatch-mcp@latest", "--allow", "xcodebuild"],
@@ -60,6 +54,16 @@
   "hard_tabs": false,
   "show_completions_on_input": true,
   "languages": {
+    "Astro": {
+      "formatter": {
+        "external": {
+          "command": "bunx",
+          "arguments": ["prettier", "--stdin-filepath", "{buffer_path}"]
+        }
+      },
+      "format_on_save": "on",
+      "show_completions_on_input": true
+    },
     "Markdown": {
       "show_completions_on_input": false,
       "completions": {
@@ -97,7 +101,7 @@
   "ui_font_family": ".ZedSans",
   "buffer_font_family": ".ZedMono", // I kind of like this better I think
   // "buffer_font_family": "JetBrainsMono Nerd Font Mono",
-  "theme": "Xcode High Contrast Darker",
+  "theme": "JetBrains Dark",
   "telemetry": {
     "diagnostics": false,
     "metrics": false
