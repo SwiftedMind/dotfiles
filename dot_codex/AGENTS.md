@@ -1,31 +1,48 @@
-# General Coding Guidelines
+# AGENTS.md
 
-- Write clean, readable and well-structured code.
+Dennis owns this. Start: say hi + 1 motivating line.
+Work style: telegraph; noun-phrases ok; drop grammar; min tokens.
 
-## Naming Conventions
+## Agent Protocol
 
-Use **clear, descriptive, English‑like** names for all identifiers. **Do not** use compressed or “python‑esque” abbreviations.
+- Bugs: add regression test when it fits.
+- Keep files <~500 LOC; split/refactor as needed.
+- Commits: Conventional Commits (`feat|fix|refactor|build|ci|chore|docs|style|perf|test`).
+- Web: search early; quote exact errors; prefer 2024–2025 sources;
+- Oracle: run `npx -y @steipete/oracle --help` once/session before first use.
+- Style: telegraph. Drop filler/grammar. Min tokens (global AGENTS + replies).
 
-## Requirements
+## Git
 
-- Prefer clarity over brevity; longer names are fine if they improve readability.
-- Spell words out: `memory`, `argument`, `attribute`, `configuration`, `request`, `response`.
-- Booleans read as predicates: `isEnabled`, `hasPendingItems`, `shouldRetry`.
-- Use argument labels to clarify meaning (Swift style): `loadProfile(from url: URL)`.
-- Avoid vague catch‑alls: `data`, `info`, `obj`, `tmp`, `flag`.
-- **Never** use cryptic names like `mem`, `arg`, `att`, `cfg`, `req`, `res`, `usr`, `env`, `fn`, `val`, `arr`, `dict`.
-- **Allowed abbreviations only:** `id`, `URL`, `UUID`, `JSON`, `HTTP`, `API`, and `x`/`y` for coordinates; `i`/`j` as simple loop indices **only**.
-- If an abbreviation is not on the allowed list, **spell it out**.
+- Safe by default: `git status/diff/log`. Push only when user asks.
+- `git checkout` ok for PR review / explicit request.
+- When asked to commit, choose a fitting commit message yourself and commit.
+- Branch changes require user consent.
+- Destructive ops forbidden unless explicit (`reset --hard`, `clean`, `restore`, `rm`, …).
+- Unexpected changes: accept + keep; assume user adjustments.
+- No repo-wide S/R scripts; keep edits small/reviewable unless explicit user consent is given.
+- Avoid manual `git stash`; if Git auto-stashes during pull/rebase, that’s fine (hint, not hard guardrail).
+- If user types a command (“pull and push”), that’s consent for that command.
+- No amend unless asked.
+- Big review: `git --no-pager diff --color=never`.
 
-## Swift Projects
+## Tools
 
-- Design UI in a way that is idiomatic for the iOS platform and follows Apple Human Interface Guidelines.
-- Use the most modern iOS APIs.
-- In SwiftUI views, always place helper functions below the body and other viewbuilder properties.
-- In SwiftUI views, declare all properties a var instead of let.
-- Use modern Swift 6 Concurrency.
-- In SwiftUI, use LocalizedStringKey by passing string literals; don’t wrap with String(localized:).
-- Use String(localized:) only when no LocalizedStringKey initializer exists, or for pre-localized values outside SwiftUI (e.g., model/error strings).
-- Use the #Preview macro for SwiftUI previews.
-- The projects use the new String Catalog, so NEVER use traditional "keys" for texts. Simply use Text() and LocalizedStringKey with the English translation.
-- Use triple-shasl (///) for documentation comments
+### bash
+
+- When running commands, avoid `cd "$PWD"` and instead write the full path explicitly.
+
+## oracle
+
+- Bundle prompt+files for 2nd model. Use when stuck/buggy/review.
+- Run `npx -y @steipete/oracle --help` once/session (before first use).
+
+### monocle
+
+- Cli to extract symbol definition/hover information and more via Swifts SourceKit LSP (Swift projects only)
+- Run `monocle -help` once/session (before first use).
+
+### gh
+
+- GitHub CLI for PRs/CI/releases. Given issue/PR URL (or `/pull/5`): use `gh`, not web search.
+- Examples: `gh issue view <url> --comments -R owner/repo`, `gh pr view <url> --comments --files -R owner/repo`.

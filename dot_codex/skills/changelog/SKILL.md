@@ -1,70 +1,104 @@
 ---
-name: changelog-work
-description: "Guidelines on working with a changelog. Use this when the user asks you to add or change the CHANGELOG.md"
+name: changelog
+description: Automatically creates user-facing changelogs from git commits by analyzing commit history, categorizing changes, and transforming technical commits into clear, customer-friendly release notes. Turns hours of manual changelog writing into minutes of automated generation.
 ---
 
-# Changelog Guidelines
+# Changelog Generator
 
-## File structure (keep this exact order)
+This skill transforms technical git commits into polished, user-friendly changelogs that your customers and users will actually understand and appreciate.
+
+## When to Use This Skill
+
+- Preparing release notes for a new version
+- Creating weekly or monthly product update summaries
+- Documenting changes for customers
+- Writing changelog entries for app store submissions
+- Generating update notifications
+- Creating internal release documentation
+- Maintaining a public changelog/product updates page
+
+## What This Skill Does
+
+1. **Scans Git History**: Analyzes commits from a specific time period or between versions
+2. **Categorizes Changes**: Groups commits into logical categories (features, improvements, bug fixes, breaking changes, security)
+3. **Translates Technical → User-Friendly**: Converts developer commits into customer language
+4. **Formats Professionally**: Creates clean, structured changelog entries
+5. **Filters Noise**: Excludes internal commits (refactoring, tests, etc.)
+6. **Follows Best Practices**: Applies changelog guidelines and your brand voice
+
+## How to Use
+
+### Basic Usage
+
+From your project repository:
 
 ```
-## [Upcoming]
-
-### Added
-### Enhanced
-### Fixed
-
-## [x.y.z]
-### Added
-### Enhanced
-### Fixed
+Create a changelog from commits since last release
 ```
 
-- **Newest versions first** (reverse chronological).
+```
+Generate changelog for all commits from the past week
+```
 
-## Categorization rules
+```
+Create release notes for version 2.5.0
+```
 
-Use these sections **only** (project house style):
+### With Specific Date Range
 
-- **Added** — brand new capabilities, APIs, options, or surface area.
-- **Enhanced** — improvements to existing behavior, ergonomics, performance, or DX (what many projects call “Changed”).
-- **Fixed** — bug fixes and crash/stability corrections.
+```
+Create a changelog for all commits between March 1 and March 15
+```
 
-> If needed for a specific release, you may add extra headings below the three above (e.g., **Breaking Changes**, **Deprecated**, **Removed**, **Security**). Only include them when relevant.
+### With Custom Guidelines
 
-## Entry formatting
+```
+Create a changelog for commits since v2.4.0, using my changelog
+guidelines from CHANGELOG_STYLE.md
+```
 
-- One bullet per change: `- **Concise Title**: Brief, clear explanation.`
-- **Bold** a short title; then a **sentence** describing the change and impact.
-- Use _inline code_ for types, symbols, method names (e.g., `ModelSession`, `clearTranscript()`).
-- If helpful, include a **small code block** and prefer a **Before/Now** mini-diff:
+## Example
 
-  ```swift
-  // Before
-  PromptTag("system", content: [instructions])
+**User**: "Create a changelog for commits from the past 7 days"
 
-  // Now
-  PromptTag("system", content: instructions)
-  ```
+**Output**:
 
-- Keep bullets short; move rationales/details into a second paragraph only when it materially improves understanding.
-- Avoid commit hashes, internal ticket IDs, and colloquialisms.
+```markdown
+# Updates - Week of March 10, 2024
 
-## Versioning & releases
+## ✨ New Features
 
-- Keep all new bullets under **`[Upcoming]`** while developing.
-- When releasing:
-  1. Decide version **x.y.z** using **SemVer** rules (MAJOR: breaking; MINOR: backward‑compatible features; PATCH: backward‑compatible fixes).
-  2. Create a new section `## [x.y.z]` **below** `[Upcoming]` and **move** the relevant bullets from `[Upcoming]` into it.
-  3. Leave `[Upcoming]` in place (empty) for the next cycle.
-  4. Optionally append a release date like `## [x.y.z] — 2025‑09‑22` if dates are desired for this repository.
-- Never delete history; correct mistakes with follow‑up entries.
+- **Team Workspaces**: Create separate workspaces for different
+  projects. Invite team members and keep everything organized.
 
-## Writing checklist (run for every change)
+- **Keyboard Shortcuts**: Press ? to see all available shortcuts.
+  Navigate faster without touching your mouse.
 
-- [ ] Correct section (Added / Enhanced / Fixed).
-- [ ] Clear bold title + one‑sentence explanation.
-- [ ] APIs, types, and errors in `code` style; Swift samples compile or read plausibly.
-- [ ] Include small example when it clarifies the change (esp. ergonomic/behavioral tweaks).
-- [ ] No internal IDs or noisy detail; user‑facing impact is obvious.
-- [ ] Placed under `[Upcoming]` (or moved to the new `## [x.y.z]` on release).
+## 🔧 Improvements
+
+- **Faster Sync**: Files now sync 2x faster across devices
+- **Better Search**: Search now includes file contents, not just titles
+
+## 🐛 Fixes
+
+- Fixed issue where large images wouldn't upload
+- Resolved timezone confusion in scheduled posts
+- Corrected notification badge count
+```
+
+**Inspired by:** Manik Aggarwal's use case from Lenny's Newsletter
+
+## Tips
+
+- Run from your git repository root
+- Specify date ranges for focused changelogs
+- Use your CHANGELOG_STYLE.md for consistent formatting
+- Review and adjust the generated changelog before publishing
+- Save output directly to CHANGELOG.md
+
+## Related Use Cases
+
+- Creating GitHub release notes
+- Writing app store update descriptions
+- Generating email updates for users
+- Creating social media announcement posts
