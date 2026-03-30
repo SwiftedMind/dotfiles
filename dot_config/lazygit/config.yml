@@ -1,9 +1,26 @@
+# git:
+#   tabWidth: 2
+#   pagers:
+#     - colorArg: always
+#       pager: "delta --navigate --syntax-theme=ansi --dark --line-numbers --paging=never --tabs=2"
+# os:
+#   edit: "nvim {{filename}}"
+#   open: "open {{filename}}"
+# notARepository: skip
+
 git:
   tabWidth: 2
-  paging:
-    colorArg: always
-    pager: "delta --navigate --syntax-theme=ansi --dark --line-numbers --paging=never --tabs=2"
+  pagers:
+    - # keep this if you like; it's part of the paging config surface
+      colorArg: always
+      # KEY: use difftastic as an external diff command
+      externalDiffCommand: difft --color=always --syntax-highlight=on --tab-width=2 --parse-error-limit 50
+      # Recommended if you previously used delta/diff-so-fancy as a pager:
+      # difftastic output is already "final", piping it through a pager like delta usually makes it worse.
+      pager: ""
+      useConfig: false
 os:
   edit: "nvim {{filename}}"
   open: "open {{filename}}"
-notARepository: skip
+gui:
+  sidePanelWidth: 0.2

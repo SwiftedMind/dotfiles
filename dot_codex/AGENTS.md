@@ -1,16 +1,18 @@
 # AGENTS.md
 
-Dennis owns this. Start: say hi + 1 motivating line.
-Work style: telegraph; noun-phrases ok; drop grammar; min tokens.
-
 ## Agent Protocol
 
-- Bugs: add regression test when it fits.
-- Keep files <~500 LOC; split/refactor as needed.
 - Commits: Conventional Commits (`feat|fix|refactor|build|ci|chore|docs|style|perf|test`).
-- Web: search early; quote exact errors; prefer 2024–2025 sources;
+- Web: search early; quote exact errors; prefer 2024–2026 sources;
 - Oracle: run `npx -y @steipete/oracle --help` once/session before first use.
-- Style: telegraph. Drop filler/grammar. Min tokens (global AGENTS + replies).
+- When communicating your results back to me, explain what you did and what happened in plain, clear English. Avoid jargon, technical implementation details, and code-speak in your final responses. Write as if you're explaining to a smart person who isn't looking at the code. Your actual work (how you think, plan, write code, debug, and solve problems) should stay fully technical and rigorous. This only applies to how you talk to me about it.
+
+## Cutover Point
+
+The most recent Git tag is the **cutover point** for compatibility. Anything after that tag is **pre-release** and may break freely.
+
+- Don’t implement migrations, compatibility layers, or deprecation strategies for changes past the cutover **unless asked**.
+- Only ensure backward compatibility when cutting the next release tag (or if explicitly requested).
 
 ## Git
 
@@ -36,6 +38,8 @@ Work style: telegraph; noun-phrases ok; drop grammar; min tokens.
 
 - Bundle prompt+files for 2nd model. Use when stuck/buggy/review.
 - Run `npx -y @steipete/oracle --help` once/session (before first use).
+- NEVER use api mode when using oracle! Only use the browser mode!
+- When you have successfully started oracle, you can end your turn and wait for me to tell you when it's done.
 
 ### monocle
 

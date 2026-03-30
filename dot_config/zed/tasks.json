@@ -18,21 +18,7 @@
   },
   {
     "label": "start lazygit",
-    "command": "lazygit -p $ZED_WORKTREE_ROOT"
-  },
-  {
-    "label": "Swift: Build",
-    "command": "xcede build",
-    "allow_concurrent_runs": false,
-    "reveal": "no_focus",
-    "hide": "never"
-  },
-  {
-    "label": "Swift: Run",
-    "command": "xcede buildrun",
-    "allow_concurrent_runs": false,
-    "reveal": "no_focus",
-    "hide": "never"
+    "command": "lazygit -p \"$ZED_WORKTREE_ROOT\""
   },
   {
     "label": "$ZED_CUSTOM_SWIFT_TEST_CLASS test",

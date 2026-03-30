@@ -48,12 +48,12 @@
   },
   {
     "bindings": {
-      "cmd-b": ["task::Spawn", { "task_name": "Swift: Build" }]
+      "cmd-b": ["task::Spawn", {}]
     }
   },
   {
     "bindings": {
-      "cmd-r": "debugger::Start"
+      "cmd-r": ["task::Spawn", {}]
     }
   },
   {
