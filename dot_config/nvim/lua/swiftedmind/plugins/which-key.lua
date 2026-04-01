@@ -6,8 +6,28 @@ return {
     vim.o.timeoutlen = 500
   end,
   opts = {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
+    preset = "modern",
+    spec = {
+      { "<leader>c", group = "code" },
+      { "<leader>e", group = "explorer" },
+      { "<leader>f", group = "find" },
+      { "<leader>h", group = "git" },
+      { "<leader>m", group = "format" },
+      { "<leader>n", group = "search" },
+      { "<leader>r", group = "lsp" },
+      { "<leader>s", group = "split" },
+      { "<leader>t", group = "tab" },
+      { "<leader>w", group = "workspace" },
+      { "<leader>x", group = "trouble" },
+    },
+  },
+  keys = {
+    {
+      "<leader>?",
+      function()
+        require("which-key").show({ global = false })
+      end,
+      desc = "Buffer local keymaps",
+    },
   },
 }
