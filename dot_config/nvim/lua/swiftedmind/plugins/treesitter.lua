@@ -36,7 +36,11 @@ return {
       install_dir = vim.fn.stdpath("data") .. "/site",
     })
 
-    treesitter.install(parsers)
+    -- Do not install parsers during normal startup. On a fresh machine this creates
+    -- noisy "Press ENTER" messages and slows every launch while downloads run.
+    vim.api.nvim_create_user_command("TSInstallAll", function()
+      treesitter.install(parsers)
+    end, { desc = "Install all configured Tree-sitter parsers" })
 
     require("nvim-ts-autotag").setup()
 
