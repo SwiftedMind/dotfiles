@@ -1,0 +1,96 @@
+#!/usr/bin/env bash
+set -u
+
+if [[ "$(uname -s)" != "Darwin" ]]; then
+  echo "dotfiles-doctor currently checks macOS setup only."
+  exit 0
+fi
+
+missing_required=0
+missing_optional=0
+
+ok() {
+  printf "✓ %s\n" "$1"
+}
+
+missing_required() {
+  printf "✗ %s\n" "$1"
+  missing_required=$((missing_required + 1))
+}
+
+missing_optional() {
+  printf "! %s\n" "$1"
+  missing_optional=$((missing_optional + 1))
+}
+
+has_command() {
+  command -v "$1" >/dev/null 2>&1
+}
+
+has_file() {
+  [[ -e "$1" ]]
+}
+
+echo "Checking terminal and Neovim dotfiles dependencies..."
+echo
+
+if has_command brew || [[ -x /opt/homebrew/bin/brew || -x /usr/local/bin/brew ]]; then
+  ok "Homebrew is installed"
+else
+  missing_required "Homebrew is missing; install it from https://brew.sh and run 'chezmoi apply' again"
+fi
+
+if [[ -d "$HOME/.oh-my-zsh" ]]; then
+  ok "Oh My Zsh is installed"
+else
+  missing_required "Oh My Zsh is missing; the chezmoi run_once script should install it"
+fi
+
+p10k_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+if [[ -d "$p10k_dir" ]]; then
+  ok "Powerlevel10k is installed"
+else
+  missing_required "Powerlevel10k is missing; the chezmoi run_once script should install it"
+fi
+
+for cmd in git node npm nvim; do
+  if has_command "$cmd"; then
+    ok "$cmd is available"
+  else
+    missing_required "$cmd is missing"
+  fi
+done
+
+for cmd in eza zoxide stylua black isort pylint pipx; do
+  if has_command "$cmd"; then
+    ok "$cmd is available"
+  else
+    missing_optional "$cmd is missing; install via Brewfile if you want the full setup"
+  fi
+done
+
+if has_file /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh || has_file /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh; then
+  ok "zsh-autosuggestions is installed"
+else
+  missing_optional "zsh-autosuggestions is missing"
+fi
+
+if has_file /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh || has_file /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh; then
+  ok "zsh-syntax-highlighting is installed"
+else
+  missing_optional "zsh-syntax-highlighting is missing"
+fi
+
+echo
+if (( missing_required > 0 )); then
+  echo "Found $missing_required required missing dependency/dependencies."
+  echo "Run 'chezmoi apply' again after fixing the required items."
+  exit 1
+fi
+
+if (( missing_optional > 0 )); then
+  echo "Required dependencies look good, but $missing_optional optional item(s) are missing."
+  exit 0
+fi
+
+echo "All checked dependencies look good."
