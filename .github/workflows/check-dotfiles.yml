@@ -1,0 +1,28 @@
+name: Check dotfiles
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  zshrc:
+    name: Validate zshrc
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install zsh
+        run: sudo apt-get update && sudo apt-get install -y zsh
+
+      - name: Check for unresolved merge-conflict markers
+        run: |
+          if grep -RInE '^(<<<<<<<|=======|>>>>>>>)' dot_zshrc dot_zprofile dot_config/nvim; then
+            echo "Unresolved merge-conflict markers found."
+            exit 1
+          fi
+
+      - name: Validate zsh syntax
+        run: zsh -n dot_zshrc
