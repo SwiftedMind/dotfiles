@@ -11,7 +11,11 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-  checker = require("lazy").setup({ { import = "swiftedmind.plugins" }, { import = "swiftedmind.plugins.lsp" } }, {{
+require("lazy").setup({
+  { import = "swiftedmind.plugins" },
+  { import = "swiftedmind.plugins.lsp" },
+}, {
+  checker = {
     enabled = true,
     notify = false,
   },
@@ -19,4 +23,3 @@ vim.opt.rtp:prepend(lazypath)
     notify = false,
   },
 })
-
