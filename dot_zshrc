@@ -20,6 +20,7 @@ if [[ "$TERM_PROGRAM" == "zed" || ! -o interactive ]]; then
   export GIT_TERMINAL_PROMPT=0            # Never block on git credential prompts in headless runs
 fi
 
+
 # Theme choice (we’ll still override the prompt for Zed/VS Code below).
 # Fall back to robbyrussell when powerlevel10k is not installed yet to avoid startup noise.
 if [[ "$TERM_PROGRAM" == "vscode" || "$TERM_PROGRAM" == "zed" ]]; then
