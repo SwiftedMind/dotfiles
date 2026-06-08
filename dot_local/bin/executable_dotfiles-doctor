@@ -31,8 +31,37 @@ has_file() {
   [[ -e "$1" ]]
 }
 
+check_zshrc() {
+  local zshrc="$HOME/.zshrc"
+
+  if [[ ! -f "$zshrc" ]]; then
+    missing_required "~/.zshrc is missing; run 'chezmoi apply'"
+    return
+  fi
+
+  if grep -nE '^(<<<<<<<|=======|>>>>>>>)' "$zshrc" >/tmp/dotfiles-doctor-zshrc-conflicts 2>/dev/null; then
+    echo "Conflict markers found in ~/.zshrc:" >&2
+    cat /tmp/dotfiles-doctor-zshrc-conflicts >&2
+    missing_required "~/.zshrc contains unresolved merge-conflict markers"
+  else
+    ok "~/.zshrc has no merge-conflict markers"
+  fi
+
+  if has_command zsh; then
+    if zsh -n "$zshrc"; then
+      ok "~/.zshrc has valid zsh syntax"
+    else
+      missing_required "~/.zshrc has zsh syntax errors"
+    fi
+  else
+    missing_required "zsh is missing; cannot validate ~/.zshrc syntax"
+  fi
+}
+
 echo "Checking terminal and Neovim dotfiles dependencies..."
 echo
+
+check_zshrc
 
 if has_command brew || [[ -x /opt/homebrew/bin/brew || -x /usr/local/bin/brew ]]; then
   ok "Homebrew is installed"
