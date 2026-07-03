@@ -1,0 +1,32 @@
+{
+  "title": "Volume Fix",
+  "rules": [
+    {
+      "description": "Fix volume keys on macOS beta",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "consumer_key_code": "volume_increment"
+          },
+          "to": [
+            {
+              "shell_command": "sleep 0.05; /usr/bin/osascript -e 'set currentVolume to output volume of (get volume settings)' -e 'set newVolume to currentVolume + 5' -e 'if newVolume > 100 then set newVolume to 100' -e 'set volume output volume newVolume'"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "consumer_key_code": "volume_decrement"
+          },
+          "to": [
+            {
+              "shell_command": "sleep 0.05; /usr/bin/osascript -e 'set currentVolume to output volume of (get volume settings)' -e 'set newVolume to currentVolume - 5' -e 'if newVolume < 0 then set newVolume to 0' -e 'set volume output volume newVolume'"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

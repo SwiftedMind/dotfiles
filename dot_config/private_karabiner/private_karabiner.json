@@ -1,0 +1,92 @@
+{
+    "global": { "show_in_menu_bar": false },
+    "profiles": [
+        {
+            "complex_modifications": {
+                "rules": [
+                    {
+                        "description": "Internal MacBook F5/Dictation key → F15",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [{ "is_built_in_keyboard": true }],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "f5",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "f15" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "External Dictation key → F15",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "consumer_key_code": "dictation",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "f15" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Fix volume keys on macOS beta",
+                        "manipulators": [
+                            {
+                                "from": { "consumer_key_code": "volume_increment" },
+                                "to": [{ "shell_command": "sleep 0.05; /usr/bin/osascript -e 'set currentVolume to output volume of (get volume settings)' -e 'set newVolume to currentVolume + 5' -e 'if newVolume > 100 then set newVolume to 100' -e 'set volume output volume newVolume'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "consumer_key_code": "volume_decrement" },
+                                "to": [{ "shell_command": "sleep 0.05; /usr/bin/osascript -e 'set currentVolume to output volume of (get volume settings)' -e 'set newVolume to currentVolume - 5' -e 'if newVolume < 0 then set newVolume to 0' -e 'set volume output volume newVolume'" }],
+                                "type": "basic"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "devices": [
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 4141,
+                        "vendor_id": 6645
+                    },
+                    "ignore": true,
+                    "manipulate_caps_lock_led": false
+                },
+                {
+                    "identifiers": { "is_keyboard": true },
+                    "manipulate_caps_lock_led": false
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "vendor_id": 2007
+                    },
+                    "ignore": false,
+                    "ignore_vendor_events": true,
+                    "manipulate_caps_lock_led": false
+                }
+            ],
+            "fn_function_keys": [
+                {
+                    "from": { "key_code": "f5" },
+                    "to": [{ "key_code": "f15" }]
+                }
+            ],
+            "name": "Default profile",
+            "selected": true,
+            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
+        }
+    ]
+}
