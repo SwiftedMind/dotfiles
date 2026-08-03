@@ -1,0 +1,4 @@
+# Application-managed state
+.codex/rules/default.rules
+.codex/skills
+.config/raycast
