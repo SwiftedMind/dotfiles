@@ -23,4 +23,11 @@ os:
   edit: "nvim {{filename}}"
   open: "open {{filename}}"
 gui:
+  commandLogSize: 2
+  mainPanelSplitMode: vertical
   sidePanelWidth: 0.2
+  theme:
+    selectedLineBgColor:
+      - reverse
+    inactiveViewSelectedLineBgColor:
+      - default

@@ -46,11 +46,10 @@ else
   missing_required "Oh My Zsh is missing; the chezmoi run_once script should install it"
 fi
 
-p10k_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
-if [[ -d "$p10k_dir" ]]; then
-  ok "Powerlevel10k is installed"
+if has_command starship; then
+  ok "Starship is installed"
 else
-  missing_required "Powerlevel10k is missing; the chezmoi run_once script should install it"
+  missing_required "Starship is missing; the Brewfile should install it"
 fi
 
 for cmd in git node npm nvim; do

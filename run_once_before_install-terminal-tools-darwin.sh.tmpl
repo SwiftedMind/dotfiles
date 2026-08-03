@@ -43,25 +43,6 @@ ensure_oh_my_zsh() {
   RUNZSH=no CHSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
-ensure_powerlevel10k() {
-  local theme_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
-
-  if [[ -d "$theme_dir/.git" ]]; then
-    log "Updating Powerlevel10k"
-    git -C "$theme_dir" pull --ff-only
-    return
-  fi
-
-  if [[ -d "$theme_dir" ]]; then
-    warn "Powerlevel10k directory already exists but is not a Git checkout: $theme_dir"
-    warn "Leaving it unchanged. Remove it manually if you want this script to reinstall it."
-    return
-  fi
-
-  log "Installing Powerlevel10k"
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$theme_dir"
-}
-
 install_brew_bundle() {
   local brewfile="{{ .chezmoi.sourceDir }}/Brewfile"
 
@@ -89,7 +70,6 @@ main() {
   ensure_homebrew
   install_brew_bundle
   ensure_oh_my_zsh
-  ensure_powerlevel10k
   ensure_mason_npm_packages
 
   log "Terminal tooling setup complete"
