@@ -113,4 +113,12 @@ if [[ -f ~/.secrets ]]; then
 fi
 
 alias python=python3
-eval "$(rbenv init - bash)"
+
+# dcg: warn if the hook was silently removed from Claude Code settings.
+if command -v dcg >/dev/null 2>&1 && command -v jq >/dev/null 2>&1; then
+  if [[ -f "$HOME/.claude/settings.json" ]] && \
+     ! jq -e '.hooks.PreToolUse[]? | select(.hooks[]?.command | test("dcg$"))' \
+       "$HOME/.claude/settings.json" >/dev/null 2>&1; then
+    print -P '%F{yellow}[dcg] Hook missing from ~/.claude/settings.json — run: dcg install%f'
+  fi
+fi
