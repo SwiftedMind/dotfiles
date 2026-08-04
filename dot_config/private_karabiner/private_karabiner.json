@@ -38,6 +38,7 @@
                     },
                     {
                         "description": "Fix volume keys on macOS beta",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": { "consumer_key_code": "volume_increment" },
@@ -82,6 +83,10 @@
                 {
                     "from": { "key_code": "f5" },
                     "to": [{ "key_code": "f15" }]
+                },
+                {
+                    "from": { "key_code": "f6" },
+                    "to": [{ "key_code": "vk_none" }]
                 }
             ],
             "name": "Default profile",
