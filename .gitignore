@@ -1,0 +1,4 @@
+.DS_Store
+dot_DS_Store
+/dot_config/nvim/empty_nvim.log
+/dot_config/zellij/config.kdl.bak

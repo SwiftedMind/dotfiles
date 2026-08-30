@@ -9,11 +9,13 @@
 # notARepository: skip
 
 git:
+  disableForcePushing: true
   tabWidth: 2
-  pagers:
-    - pager: delta --dark --paging=never --line-numbers --side-by-side
-    - externalDiffCommand: difft --color=always --syntax-highlight=on --tab-width=2
-    - {} # plain diff fallback
+  diffRenderers:
+    - command: delta --dark --paging=never --line-numbers --side-by-side
+    - command: difft --color=always --syntax-highlight=on --tab-width=2
+      type: extDiff
+    - type: rawGit # plain diff fallback
 os:
   edit: "nvim {{filename}}"
   open: "open {{filename}}"

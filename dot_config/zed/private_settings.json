@@ -13,9 +13,16 @@
   "file_finder": {
     "modal_max_width": "small",
   },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "git_panel": {
+    "dock": "left",
+  },
   "extend_comment_on_newline": true,
   "icon_theme": "VSCode Great Icons Theme",
   "agent": {
+    "dock": "right",
     "tool_permissions": {
       "default": "allow",
     },
@@ -44,9 +51,11 @@
     },
   },
   "outline_panel": {
+    "dock": "left",
     "folder_icons": true,
   },
   "project_panel": {
+    "dock": "left",
     "default_width": 300,
     "indent_size": 12.0,
   },

@@ -1,113 +1,92 @@
-##### Oh-My-Zsh core ###########################################################################
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_CUSTOM="${ZSH_CUSTOM:-$ZSH/custom}"
-
-# Treat Zed (and any non-interactive shell) as headless: no prompts, no compfix interactivity.
-# These must be set BEFORE sourcing oh-my-zsh.sh.
-if [[ "$TERM_PROGRAM" == "zed" || ! -o interactive ]]; then
-  export DISABLE_AUTO_UPDATE="true"       # OMZ: never prompt to update
-  export DISABLE_UPDATE_PROMPT="true"     # OMZ (older var) for safety
-  export ZSH_DISABLE_COMPFIX="true"       # Skip insecure completion dir prompts
-  setopt NO_CHECK_JOBS                    # Don't block on background jobs at exit
-  unsetopt SHARE_HISTORY                  # Avoid history file contention in headless runs
-  export GIT_TERMINAL_PROMPT=0            # Never block on git credential prompts in headless runs
+if [[ ! -o interactive ]]; then
+  setopt NO_CHECK_JOBS
+  export GIT_TERMINAL_PROMPT=0
+  return
 fi
 
-
-ZSH_THEME=""
-
-plugins=(git)
-if [[ -r "$ZSH/oh-my-zsh.sh" ]]; then
-  source "$ZSH/oh-my-zsh.sh"
-else
-  PROMPT='%n@%m:%~%# '
-  RPROMPT=''
-fi
-
-##### Prompt / Theme ###########################################################################
-if [[ -o interactive ]] && command -v starship >/dev/null 2>&1; then
+##### Prompt / theme ##########################################################################
+if command -v starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"
 fi
 
-##### History setup ###########################################################################
+##### History #################################################################################
 HISTFILE="$HOME/.zhistory"
-SAVEHIST=1000
-HISTSIZE=999
-setopt share_history
-setopt hist_expire_dups_first
-setopt hist_ignore_dups
-setopt hist_verify
+HISTSIZE=200000
+SAVEHIST=100000
 
-# Re-assert headless-safe options if inside Zed (or non-interactive).
-if [[ "$TERM_PROGRAM" == "zed" || ! -o interactive ]]; then
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+setopt HIST_SAVE_BY_COPY
+setopt HIST_VERIFY
+setopt SHARE_HISTORY
+
+# Zed sessions should not contend for history or block on background jobs and Git prompts.
+if [[ "$TERM_PROGRAM" == "zed" ]]; then
   setopt NO_CHECK_JOBS
   unsetopt SHARE_HISTORY
+  export GIT_TERMINAL_PROMPT=0
 fi
 
-##### Interactive-only plugins & bindings ######################################################
-# Load ZLE-dependent plugins only when truly interactive with a TTY.
-if [[ -o interactive && -t 1 ]]; then
-  # completion/navigation niceties
+##### Completion and interactive tools ########################################################
+zsh_cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+mkdir -p "$zsh_cache_dir"
+
+autoload -Uz compinit
+zcompdump="$zsh_cache_dir/zcompdump"
+if [[ -n "$zcompdump"(#qN.mh+24) ]]; then
+  compinit -i -d "$zcompdump"
+else
+  compinit -C -i -d "$zcompdump"
+fi
+
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$zsh_cache_dir/zcompcache"
+
+# Load ZLE-dependent tools only when the shell has a terminal.
+if [[ -t 1 ]]; then
   bindkey '^[[A' history-search-backward
   bindkey '^[[B' history-search-forward
 
-  # suggestions & highlighting (ZLE plugins)
-  if [[ -r /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
-    source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-  elif [[ -r /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
-    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-  fi
+  # Bun completions
+  [[ -s "$HOME/.bun/_bun" ]] && source "$HOME/.bun/_bun"
 
-  if [[ -r /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-    source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-  elif [[ -r /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-  fi
-
-  # zoxide (better cd) — only interactive to avoid surprising scripts
   if command -v zoxide >/dev/null 2>&1; then
     eval "$(zoxide init zsh)"
     alias cd="z"
   fi
 
-  # bun completions — completions are interactive-only
-  [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+  if command -v fd >/dev/null 2>&1; then
+    export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+  fi
+
+  # fzf defines widgets that autosuggestions and syntax highlighting must wrap afterwards.
+  if command -v fzf >/dev/null 2>&1; then
+    source <(fzf --zsh)
+  fi
+
+  if [[ -r /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+    source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  elif [[ -r /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  fi
 fi
 
-##### Aliases & Tools #########################################################################
+##### Aliases and tools #######################################################################
 if command -v eza >/dev/null 2>&1; then
   alias ls="eza --icons=always"
 fi
 alias reset-airdrop="killall sharingd"
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+[[ -x "$HOME/.claude/local/claude" ]] && alias claude="$HOME/.claude/local/claude"
 
-# LM Studio CLI
-export PATH="$PATH:$HOME/.lmstudio/bin"
-
-# pipx
-export PATH="$PATH:$HOME/.local/bin"
-
-# LLVM
-if [[ -d /opt/homebrew/opt/llvm/bin ]]; then
-  export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-  export LLVM_SYMBOLIZER_PATH="/opt/homebrew/opt/llvm/bin/llvm-symbolizer"
-elif [[ -d /usr/local/opt/llvm/bin ]]; then
-  export PATH="/usr/local/opt/llvm/bin:$PATH"
-  export LLVM_SYMBOLIZER_PATH="/usr/local/opt/llvm/bin/llvm-symbolizer"
-fi
-
-[[ -x ~/.claude/local/claude ]] && alias claude="~/.claude/local/claude"
-
-# Put lazygit config in ~/.config/lazygit/config.yml
-export XDG_CONFIG_HOME="$HOME/.config"
-
-# Load local secrets (not tracked by chezmoi)
-# This includes OPENAI_API_KEY
-if [[ -f ~/.secrets ]]; then
-  source ~/.secrets
+# Load local secrets (not tracked by chezmoi).
+# This includes OPENAI_API_KEY.
+if [[ -f "$HOME/.secrets" ]]; then
+  source "$HOME/.secrets"
   alias codex-api='printenv OPENAI_API_KEY | codex login --with-api-key'
   alias codex-sub='codex login'
 fi
@@ -120,5 +99,14 @@ if command -v dcg >/dev/null 2>&1 && command -v jq >/dev/null 2>&1; then
      ! jq -e '.hooks.PreToolUse[]? | select(.hooks[]?.command | test("dcg$"))' \
        "$HOME/.claude/settings.json" >/dev/null 2>&1; then
     print -P '%F{yellow}[dcg] Hook missing from ~/.claude/settings.json — run: dcg install%f'
+  fi
+fi
+
+# Syntax highlighting must be sourced after every widget is defined.
+if [[ -t 1 ]]; then
+  if [[ -r /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+    source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  elif [[ -r /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
   fi
 fi

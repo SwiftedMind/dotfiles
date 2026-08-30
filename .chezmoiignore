@@ -2,3 +2,7 @@
 .codex/rules/default.rules
 .codex/skills
 .config/raycast
+
+# Repository metadata
+.editorconfig
+.gitignore
